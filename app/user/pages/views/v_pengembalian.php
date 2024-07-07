@@ -51,7 +51,7 @@
                                             $sql = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE nama_anggota = '$fullname' AND tanggal_pengembalian = ''");
                                             while ($data = mysqli_fetch_array($sql)) {
                                             ?>
-                                                <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?></option>
+                                                <option value="<?= $data['id_peminjaman']; ?>"> <?= $data['judul_buku']; ?></option>
                                             <?php
                                             }
                                             ?>
@@ -104,7 +104,11 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $row['nama_anggota']; ?></td>
                                             <td><?= $row['judul_buku']; ?></td>
-                                            <td><?= $row['tanggal_pengembalian']; ?></td>
+                                            <?php if ($row['tanggal_pengembalian']) { ?>
+                                                <td><?= date('d-m-Y', strtotime($row['tanggal_pengembalian'])); ?></td>
+                                            <?php } else { ?>
+                                                <td><?= $row['tanggal_pengembalian']; ?></td>
+                                            <?php } ?>
                                             <td><?= $row['kondisi_buku_saat_dikembalikan']; ?></td>
                                             <td><?= $row['denda']; ?></td>
                                         </tr>

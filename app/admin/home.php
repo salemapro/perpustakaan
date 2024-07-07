@@ -100,6 +100,25 @@ if ($_SESSION['level'] != "Admin") {
             animation: round-rotate 1.5s ease-in-out infinite;
         }
 
+        .book-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .cover-wrapper {
+            width: 200px;
+            height: auto;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .cover-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
         @-webkit-keyframes round-rotate {
             100% {
                 -webkit-transform: rotate(360deg);
@@ -196,6 +215,12 @@ if ($_SESSION['level'] != "Admin") {
                 autoclose: true
             })
         })
+    </script>
+    <script src="../../assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script>
+        $(function() {
+            bsCustomFileInput.init();
+        });
     </script>
 </body>
 

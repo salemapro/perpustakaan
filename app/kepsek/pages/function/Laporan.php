@@ -3,7 +3,9 @@ include "../../../../config/koneksi.php";
 
 if ($_GET['aksi'] == "tgl_pinjam") {
 
-    $tgl_pinjam = $_POST['tgl_pinjam'];
+    $tgl_pinjam_not_formated = $_POST['tgl_pinjam'];
+    $tgl_pinjam_date = new DateTime($tgl_pinjam_not_formated);
+    $tgl_pinjam = $tgl_pinjam_date->format('Y-m-d');
 
     echo "<html>";
     echo "<head>";
@@ -56,7 +58,9 @@ if ($_GET['aksi'] == "tgl_pinjam") {
     echo "</html>";
 } elseif ($_GET['aksi'] == "tgl_pengembalian") {
 
-    $tgl_pengembalian = $_POST['tgl_pengembalian'];
+    $tgl_pengembalian_not_formated = $_POST['tgl_pengembalian'];
+    $tgl_pengembalian_date = new DateTime($tgl_pengembalian_not_formated);
+    $tgl_pengembalian = $tgl_pengembalian_date->format('Y-m-d');
 
     echo "<html>";
     echo "<head>";

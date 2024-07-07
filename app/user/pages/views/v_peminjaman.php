@@ -70,9 +70,10 @@
                                         <label>Nama Anggota</label>
                                         <input type="text" class="form-control" name="namaAnggota" value="<?= $row1['fullname']; ?>" readonly>
                                     </div>
+
                                     <div class="form-group">
                                         <label>Judul Buku</label>
-                                        <select class="form-control" name="judulBuku">
+                                        <select class="form-control" name="judulBuku" id="judulBuku">
                                             <option selected disabled> -- Silahkan pilih buku yang akan di pinjam -- </option>
                                             <?php
                                             include "../../config/koneksi.php";
@@ -80,15 +81,38 @@
                                             $sql = mysqli_query($koneksi, "SELECT * FROM buku");
                                             while ($data = mysqli_fetch_array($sql)) {
                                             ?>
-                                                <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?></option>
+                                                <!-- <option value="<?= $data['judul_buku']; ?>"> <?= $data['judul_buku']; ?></option> -->
+                                                <option value="<?= $data['judul_buku']; ?>" data-cover="<?= htmlspecialchars($data['cover_buku']); ?>" data-sinopsis="<?= htmlspecialchars($data['sinopsis']); ?>">
+                                                    <?= $data['judul_buku']; ?>
+                                                </option>
                                             <?php
                                             }
                                             ?>
                                         </select>
                                     </div>
+                                    <div class="form-group" id="detail-buku" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-xs-2">
+                                                <label>Cover Buku</label>
+                                                <div class="book-menu">
+                                                    <div class="cover-wrapper">
+                                                        <img id="current-cover" src="" alt="Cover Buku">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <label>Sinopsis</label>
+                                                <textarea class="form-control" id="sinopsis" style="height: 210px;" readonly></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label>Tanggal Peminjaman</label>
                                         <input type="text" class="form-control" name="tanggalPeminjaman" value="<?= date('d-m-Y'); ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Batas Pengembalian</label>
+                                        <input type="text" class="form-control" name="batasPengembalian" id="batasPengembalian" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>Kondisi Buku Saat Dipinjam</label>
@@ -115,6 +139,7 @@
                                         <th>Nama Anggota</th>
                                         <th>Judul Buku</th>
                                         <th>Tanggal Peminjaman</th>
+                                        <th>Batas Peminjaman</th>
                                         <th>Tanggal Pengembalian</th>
                                         <th>Kondisi Buku Saat Dipinjam</th>
                                         <th>Kondisi Buku Saat Dikembalikan</th>
@@ -134,8 +159,13 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $row['nama_anggota']; ?></td>
                                             <td><?= $row['judul_buku']; ?></td>
-                                            <td><?= $row['tanggal_peminjaman']; ?></td>
-                                            <td><?= $row['tanggal_pengembalian']; ?></td>
+                                            <td><?= date('d-m-Y', strtotime($row['tanggal_peminjaman'])); ?></td>
+                                            <td><?= date('d-m-Y', strtotime($row['batas_peminjaman'])); ?></td>
+                                            <?php if ($row['tanggal_pengembalian']) { ?>
+                                                <td><?= date('d-m-Y', strtotime($row['tanggal_pengembalian'])); ?></td>
+                                            <?php } else { ?>
+                                                <td><?= $row['tanggal_pengembalian']; ?></td>
+                                            <?php } ?>
                                             <td><?= $row['kondisi_buku_saat_dipinjam']; ?></td>
                                             <td><?= $row['kondisi_buku_saat_dikembalikan']; ?></td>
                                             <td><?= $row['denda']; ?></td>
@@ -161,6 +191,46 @@
 <!-- jQuery 3 -->
 <script src="../../assets/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../../assets/dist/js/sweetalert.min.js"></script>
+<!-- JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const judulBukuSelect = document.getElementById('judulBuku');
+        const detailBukuDiv = document.getElementById('detail-buku');
+        const currentCoverImg = document.getElementById('current-cover');
+        const sinopsisTextarea = document.getElementById('sinopsis');
+
+        if (judulBukuSelect) {
+            judulBukuSelect.addEventListener('change', function(event) {
+                const selectedOption = event.target.selectedOptions[0];
+                const cover = selectedOption.getAttribute('data-cover');
+                const sinopsis = selectedOption.getAttribute('data-sinopsis');
+
+                if (selectedOption.value) {
+                    currentCoverImg.src = `../../assets/book/cover/${cover}`;
+                    sinopsisTextarea.value = sinopsis;
+                    detailBukuDiv.style.display = 'block';
+                } else {
+                    detailBukuDiv.style.display = 'none';
+                }
+            });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const batasPengembalianInput = document.getElementById('batasPengembalian');
+
+        if (batasPengembalianInput) {
+            const today = new Date();
+            const nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+
+            const day = nextWeek.getDate().toString().padStart(2, '0');
+            const month = (nextWeek.getMonth() + 1).toString().padStart(2, '0');
+            const year = nextWeek.getFullYear();
+
+            batasPengembalianInput.value = `${day}-${month}-${year}`;
+        }
+    });
+</script>
 <!-- Pesan Berhasil Edit -->
 <script>
     <?php

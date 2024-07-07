@@ -74,10 +74,75 @@
                                             echo $j_buku_rusak + $j_buku_baik;
                                             ?></td>
                                         <td>
+                                            <a href="#" data-target="#modalDetailBuku<?= $row['id_buku']; ?>" data-toggle="modal" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a>
                                             <a href="#" data-target="#modalEditBuku<?= $row['id_buku']; ?>" data-toggle="modal" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                             <a href="pages/function/Buku.php?act=hapus&id=<?= $row['id_buku']; ?>" class="btn btn-danger btn-sm btn-del"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
+
+                                    <!-- Modal Detail Buku -->
+                                    <div class="modal fade" id="modalDetailBuku<?= $row['id_buku']; ?>">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content" style="border-radius: 5px;">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" style="font-family: 'Quicksand', sans-serif; font-weight: bold;">Detail Buku ( <?= $row['judul_buku']; ?> - <?= $row['pengarang']; ?> )</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-2">
+                                                            <label>Cover Buku</label>
+                                                            <div class="book-menu">
+                                                                <div class="cover-wrapper">
+                                                                    <img id="current-cover" src="../../assets/book/cover/<?= htmlspecialchars($row['cover_buku']); ?>" alt="Cover Buku">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-5">
+                                                            <div class="form-group">
+                                                                <label>Judul Buku</label>
+                                                                <input type="text" readonly class="form-control" value="<?= $row['judul_buku']; ?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Penerbit</label>
+                                                                <input type="text" readonly class="form-control" value="<?= $row['penerbit_buku']; ?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Pengarang</label>
+                                                                <input type="text" readonly class="form-control" value="<?= $row['pengarang']; ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-5">
+                                                            <div class="form-group">
+                                                                <label>Kategori Buku</label>
+                                                                <input type="text" readonly class="form-control" value="<?= $row['kategori_buku']; ?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Tahun Terbit</label>
+                                                                <input type="text" readonly class="form-control" value="<?= $row['tahun_terbit']; ?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>ISBN</label>
+                                                                <input type="text" readonly class="form-control" value="<?= $row['isbn']; ?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-2">
+                                                        </div>
+                                                        <div class="col-xs-10">
+                                                            <label>Sinopsis</label>
+                                                            <textarea class="form-control" readonly required><?= htmlspecialchars($row['sinopsis']); ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Modal Edit -->
                                     <div class="modal fade" id="modalEditBuku<?= $row['id_buku']; ?>">
                                         <div class="modal-dialog">
@@ -145,6 +210,27 @@
                                                         <div class="form-group">
                                                             <label>Jumlah Buku Rusak <small style="color: red;">* Wajib diisi</small></label>
                                                             <input type="number" class="form-control" value="<?= $row['j_buku_rusak']; ?>" name="jumlahBukuRusak" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Cover Buku <small style="color: red;">* Wajib diisi</small></label>
+                                                            <div class="book-menu">
+                                                                <div class="cover-wrapper">
+                                                                    <img id="current-cover" src="../../assets/book/cover/<?= htmlspecialchars($row['cover_buku']); ?>" alt="Cover Buku">
+                                                                </div>
+                                                                <div style="margin-left: 2rem;">
+                                                                    <!-- <input type="file" id="coverInput" name="coverBuku"> -->
+                                                                    <!-- <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('coverInput').click()">Change</button> -->
+                                                                    <div class="input-group">
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input" name="coverBuku" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Sinopsis<small style="color: red;">* Wajib diisi</small></label>
+                                                            <textarea class="form-control" name="sinopsisBuku" required><?= htmlspecialchars($row['sinopsis']); ?></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -239,6 +325,22 @@
                         <label>Jumlah Buku Rusak <small style="color: red;">* Wajib diisi</small></label>
                         <input type="number" class="form-control" placeholder="Masukan Jumlah Buku Rusak" name="jumlahBukuRusak" required>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Cover Buku <small style="color: red;">* Wajib diisi</small></label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="coverBuku" id="exampleInputFile" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>Cover Buku <small style="color: red;">* Wajib diisi</small></label>
+                        <input type="file" class="file-input" name="coverBuku" required>
+                    </div> -->
+                    <div class="form-group">
+                        <label>Sinopsis <small style="color: red;">* Wajib diisi</small></label>
+                        <textarea class="form-control" placeholder="Masukan Sinopsis" name="sinopsisBuku" required> </textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-block">Simpan</button>
@@ -258,15 +360,37 @@
 <!-- jQuery 3 -->
 <script src="../../assets/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../../assets/dist/js/sweetalert.min.js"></script>
+<!-- <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const coverInput = document.getElementById('coverInput');
+        coverInput.addEventListener('change', function(event) {
+            console.log('File input changed');
+            const file = event.target.files[0];
+            if (file) {
+                console.log('File selected:', file);
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    console.log('File loaded');
+                    document.getElementById('current-cover').src = e.target.result;
+                    console.log('Image updated to', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                console.log('No file selected');
+            }
+        });
+    });
+</script> -->
 <!-- Pesan Berhasil Edit -->
 <script>
     <?php
     if (isset($_SESSION['berhasil']) && $_SESSION['berhasil'] <> '') {
+        echo "console.log('Session berhasil:', '$_SESSION[berhasil]');";
         echo "swal({
-            icon: 'success',
-            title: 'Berhasil',
-            text: '$_SESSION[berhasil]'
-        })";
+                icon: 'success',
+                title: 'Berhasil',
+                text: '$_SESSION[berhasil]'
+            })";
     }
     $_SESSION['berhasil'] = '';
     ?>
@@ -275,6 +399,7 @@
 <script>
     <?php
     if (isset($_SESSION['gagal']) && $_SESSION['gagal'] <> '') {
+        echo "console.log('Session gagal:', '$_SESSION[gagal]');";
         echo "swal({
                 icon: 'error',
                 title: 'Gagal',

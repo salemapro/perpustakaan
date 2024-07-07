@@ -22,7 +22,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Data Peminjaman</li>
+            <li class="active">Data Pengembalian</li>
         </ol>
     </section>
 
@@ -42,9 +42,7 @@
                                     <th>No</th>
                                     <th>Nama Anggota</th>
                                     <th>Judul Buku</th>
-                                    <th>Tanggal Peminjaman</th>
                                     <th>Tanggal Pengembalian</th>
-                                    <th>Kondisi Buku Saat Dipinjam</th>
                                     <th>Kondisi Buku Saat Dikembalikan</th>
                                     <th>Denda</th>
                                 </tr>
@@ -61,15 +59,12 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= $row['nama_anggota']; ?></td>
                                         <td><?= $row['judul_buku']; ?></td>
-                                        <!-- <td><?= $row['tanggal_peminjaman']; ?></td> -->
-                                        <td><?= date('d-m-Y', strtotime($row['tanggal_peminjaman'])); ?></td>
                                         <?php if ($row['tanggal_pengembalian']) { ?>
                                             <td><?= date('d-m-Y', strtotime($row['tanggal_pengembalian'])); ?></td>
                                         <?php } else { ?>
                                             <td><?= $row['tanggal_pengembalian']; ?></td>
                                         <?php } ?>
                                         <!-- <td><?= $row['tanggal_pengembalian']; ?></td> -->
-                                        <td><?= $row['kondisi_buku_saat_dipinjam']; ?></td>
                                         <td><?= $row['kondisi_buku_saat_dikembalikan']; ?></td>
                                         <td><?= $row['denda']; ?></td>
                                     </tr>
