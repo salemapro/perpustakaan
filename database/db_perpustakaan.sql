@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2024 at 05:25 PM
+-- Generation Time: Jul 10, 2024 at 04:50 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.1.30
 
@@ -37,17 +37,20 @@ CREATE TABLE `buku` (
   `tahun_terbit` varchar(125) NOT NULL,
   `isbn` int(50) NOT NULL,
   `j_buku_baik` varchar(125) NOT NULL,
-  `j_buku_rusak` varchar(125) NOT NULL
+  `j_buku_rusak` varchar(125) NOT NULL,
+  `cover_buku` text NOT NULL,
+  `sinopsis` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `buku`
 --
 
-INSERT INTO `buku` (`id_buku`, `judul_buku`, `kategori_buku`, `penerbit_buku`, `pengarang`, `tahun_terbit`, `isbn`, `j_buku_baik`, `j_buku_rusak`) VALUES
-(1, 'Cantik Itu Luka', 'Novel ', 'Gramedia Pustaka Utama', 'Eka Kurniawan', '2002', 2147483647, '38', '2'),
-(2, 'Home Sweet Loan', 'Novel ', 'Gramedia Pustaka Utama', 'Almira Bastari', '2022', 2147483647, '40', '0'),
-(3, 'Heartbreak Motel', 'Novel ', 'Gramedia Pustaka Utama', 'Ika Natassa', '2022', 2147483647, '40', '0');
+INSERT INTO `buku` (`id_buku`, `judul_buku`, `kategori_buku`, `penerbit_buku`, `pengarang`, `tahun_terbit`, `isbn`, `j_buku_baik`, `j_buku_rusak`, `cover_buku`, `sinopsis`) VALUES
+(1, 'Cantik Itu Luka', 'Novel ', 'Gramedia Pustaka Utama', 'Eka Kurniawan', '2002', 2147483647, '38', '2', 'Cantik Itu Luka20240707115327.jpg', 'cantik itu luka'),
+(2, 'Home Sweet Loan', 'Novel ', 'Gramedia Pustaka Utama', 'Almira Bastari', '2022', 2147483647, '40', '0', 'Home Sweet Loan20240707115343.jpg', 'home'),
+(3, 'Heartbreak Motel', 'Novel ', 'Gramedia Pustaka Utama', 'Ika Natassa', '2022', 2147483647, '40', '0', 'Heartbreak Motel20240707115405.jpg', 'Heartbreak'),
+(4, 'Rindu', 'Novel ', 'Mizan Pustaka', 'Tere Liye', '2014', 12345678, '3', '1', 'Rindu20240707115241.jpg', ' rindu');
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,29 @@ CREATE TABLE `pemberitahuan` (
 
 INSERT INTO `pemberitahuan` (`id_pemberitahuan`, `isi_pemberitahuan`, `level_user`, `status`) VALUES
 (1, '<i class=\'fa fa-exchange\'></i> #Reza  Saputra Telah meminjam Buku', 'Admin', 'Sudah dibaca'),
-(2, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca');
+(2, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(3, '<i class=\'fa fa-exchange\'></i> #Reza  Saputra Telah meminjam Buku', 'Admin', 'Sudah dibaca'),
+(4, '<i class=\'fa fa-exchange\'></i> #Reza  Saputra Telah meminjam Buku', 'Admin', 'Sudah dibaca'),
+(5, '<i class=\'fa fa-exchange\'></i> #Reza  Saputra Telah meminjam Buku', 'Admin', 'Sudah dibaca'),
+(6, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(7, '<i class=\'fa fa-exchange\'></i> #Reza  Saputra Telah meminjam Buku', 'Admin', 'Sudah dibaca'),
+(8, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(9, '<i class=\'fa fa-exchange\'></i> #Reza  Saputra Telah meminjam Buku', 'Admin', 'Sudah dibaca'),
+(10, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(11, '<i class=\'fa fa-exchange\'></i> #Reza  Saputra Telah meminjam Buku', 'Admin', 'Sudah dibaca'),
+(12, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(13, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(14, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(15, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(16, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(17, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(18, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(19, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(20, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(21, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(22, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca'),
+(23, '<i class=\'fa fa-exchange\'></i> #Reza  Saputra Telah meminjam Buku', 'Admin', 'Sudah dibaca'),
+(24, '<i class=\'fa fa-repeat\'></i> #Reza  Saputra Telah mengembalikan Buku', 'Admin', 'Sudah dibaca');
 
 -- --------------------------------------------------------
 
@@ -129,8 +154,9 @@ CREATE TABLE `peminjaman` (
   `id_peminjaman` int(11) NOT NULL,
   `nama_anggota` varchar(125) NOT NULL,
   `judul_buku` varchar(125) NOT NULL,
-  `tanggal_peminjaman` varchar(125) NOT NULL,
-  `tanggal_pengembalian` varchar(50) NOT NULL,
+  `tanggal_peminjaman` date NOT NULL,
+  `batas_peminjaman` date NOT NULL,
+  `tanggal_pengembalian` varchar(150) NOT NULL,
   `kondisi_buku_saat_dipinjam` varchar(125) NOT NULL,
   `kondisi_buku_saat_dikembalikan` varchar(125) NOT NULL,
   `denda` varchar(125) NOT NULL
@@ -140,8 +166,11 @@ CREATE TABLE `peminjaman` (
 -- Dumping data for table `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id_peminjaman`, `nama_anggota`, `judul_buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `kondisi_buku_saat_dipinjam`, `kondisi_buku_saat_dikembalikan`, `denda`) VALUES
-(1, 'Reza  Saputra', 'Cantik Itu Luka', '08-08-2022', '08-08-2022', 'Baik', 'Baik', 'Tidak ada');
+INSERT INTO `peminjaman` (`id_peminjaman`, `nama_anggota`, `judul_buku`, `tanggal_peminjaman`, `batas_peminjaman`, `tanggal_pengembalian`, `kondisi_buku_saat_dipinjam`, `kondisi_buku_saat_dikembalikan`, `denda`) VALUES
+(1, 'Reza  Saputra', 'Cantik Itu Luka', '2022-08-08', '2022-08-08', '2022-08-08', 'Baik', 'Baik', 'Tidak Ada'),
+(5, 'Reza  Saputra', 'Heartbreak Motel', '2024-07-07', '2024-07-14', '2024-07-07', 'Baik', 'Rusak', 'Rp 20.000'),
+(7, 'Reza  Saputra', 'Cantik Itu Luka', '2024-06-28', '2024-07-04', '2024-07-07', 'Baik', 'Baik', 'Rp 1.500'),
+(8, 'Reza  Saputra', 'Home Sweet Loan', '2024-07-07', '2024-07-07', '2024-07-07', 'Baik', 'Hilang', 'Rp 50.000');
 
 -- --------------------------------------------------------
 
@@ -183,6 +212,13 @@ CREATE TABLE `pesan` (
   `tanggal_kirim` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pesan`
+--
+
+INSERT INTO `pesan` (`id_pesan`, `penerima`, `pengirim`, `judul_pesan`, `isi_pesan`, `status`, `tanggal_kirim`) VALUES
+(2, 'Reza  Saputra', 'Ceppy Masoem', 'Halo', 'Ppp', 'Sudah dibaca', '06-07-2024');
+
 -- --------------------------------------------------------
 
 --
@@ -209,9 +245,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `kode_user`, `nis`, `fullname`, `username`, `password`, `kelas`, `alamat`, `verif`, `role`, `join_date`, `terakhir_login`) VALUES
-(1, '-', '-', 'Administrator', 'admin', 'admin', '-', '-', 'Iya', 'Admin', '04-05-2021', '06-07-2024 ( 22:02:51 )'),
-(2, 'AP001', '100011', 'Reza  Saputra', 'reza', 'Reza', 'X - Rekayasa Perangkat Lunak', 'Desa Sambiroto, Kecamatan Tayu, Kabupatem Pati', 'Tidak', 'Anggota', '08-08-2022', '06-07-2024 ( 22:20:06 )'),
-(3, '-', '-', 'Ceppy Masoem', 'kepsek', 'kepsek', '-', '-', 'Iya', 'Kepsek', '06-07-2024', '06-07-2024 ( 22:03:18 )');
+(1, '-', '-', 'Administrator', 'admin', 'admin', '-', '-', 'Iya', 'Admin', '04-05-2021', '09-07-2024 ( 21:37:15 )'),
+(2, 'AP001', '100011', 'Reza  Saputra', 'reza', 'Reza', 'X - Rekayasa Perangkat Lunak', 'Desa Sambiroto, Kecamatan Tayu, Kabupatem Pati', 'Tidak', 'Anggota', '08-08-2022', '09-07-2024 ( 14:32:01 )'),
+(3, '-', '-', 'Ceppy Masoem', 'kepsek', 'kepsek', '-', '-', 'Iya', 'Kepsek', '06-07-2024', '09-07-2024 ( 14:30:59 )');
 
 --
 -- Indexes for dumped tables
@@ -273,7 +309,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `identitas`
@@ -291,31 +327,31 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `pemberitahuan`
 --
 ALTER TABLE `pemberitahuan`
-  MODIFY `id_pemberitahuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pemberitahuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `penerbit`
 --
 ALTER TABLE `penerbit`
-  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
